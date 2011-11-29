@@ -38,6 +38,10 @@ def jasmine_titanium_app_console_js_path():
 def jasmine_titanium_app_webview_js_path():
     return os.path.join(resource_dir(), 'vendor', 'jasmine-titanium', 'lib', 'jasmine-titanium-app-webview.js')
 
+def jasmine_titanium_app_surefire_js_path():
+    return os.path.join(resource_dir(), 'vendor', 'jasmine-titanium', 'lib', 'jasmine-titanium-app-surefire.js')
+
+
 def save_options_to_temporary(options, args):
     class_name = options.class_name
     verbose = options.is_verbose
@@ -56,6 +60,11 @@ def setup_jasmine_titanium_app_console_js():
 def setup_jasmine_titanium_app_webview_js():
     shutil.copyfile(app_js_path(), app_js_backup_path())
     shutil.copyfile(jasmine_titanium_app_webview_js_path(), app_js_path())
+
+def setup_jasmine_titanium_app_surefire_js():
+    shutil.copyfile(app_js_path(), app_js_backup_path())
+    shutil.copyfile(jasmine_titanium_app_surefire_js_path(), app_js_path())
+
 
 def restore_app_js():
     shutil.copyfile(app_js_backup_path(), app_js_path())
@@ -130,8 +139,10 @@ def main(argv):
 
     if options.reporter == 'console' and options.platform != 'android':
         setup_jasmine_titanium_app_console_js()
-    else:
+    elif options.reporter == 'html':
         setup_jasmine_titanium_app_webview_js()
+    else:
+        setup_jasmine_titanium_app_surefire_js()
 
     if options.platform == 'android':
         run_android_emulator(options.android_sdk_path)

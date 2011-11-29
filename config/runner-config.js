@@ -1,4 +1,4 @@
 runner_config = {
-    lib_dir: "lib",
+    lib_dir: "**",
     spec_dir: "spec"
 }
