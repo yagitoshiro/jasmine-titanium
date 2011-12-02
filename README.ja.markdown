@@ -11,7 +11,7 @@ Getting Started
     cd Resources
     mkdir spec lib vendor
     cd vendor
-    git clone https://github.com/akahigeg/jasmine-titanium.git
+    git clone https://github.com/ikeike443/jasmine-titanium.git
     cd jasmine-titanium
     git submodule init
     git submodule update
